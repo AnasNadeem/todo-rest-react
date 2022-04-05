@@ -15,6 +15,7 @@ const TodoCard = ({todos, title}) => {
                 </div>
             </a>
             ))}
+            <button className="button btn-full">Create</button>
         </div>
     );
 }
