@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  Link,
 } from "react-router-dom";
 
 function App() {
@@ -15,6 +15,9 @@ function App() {
   //   {title:'Series list', creator:'Anas', id:2},
   //   {title:'Anime list', creator:'Saif', id:3}
   // ])
+  // if(!localStorage.getItem('token')){
+  //   return <Navigate to='/login'/>
+  // }
   return (
     <Router>
       <div className="app-container">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
     const [firstName, setFirstName] = useState('')
@@ -34,7 +34,6 @@ const Register = () => {
                 setEmail('');
                 setUsername('');
                 setPassword('');
-                document.getElementById('registerFormId').reset();
                 return resp.json()
             }
             return Promise.reject(resp);
@@ -45,20 +44,25 @@ const Register = () => {
         .catch((errresp) => {
             errresp.json().then(err => {
                 console.log('error:',err)
+                setErrMsg(err)
+                console.log('i am errMsg',errMsg)
             })
         })
     }
 
     return (
         <div className="form-section">
+            {/* {errMsg && 
+                errMsg.map((errName)=>(<p className="color:red">{errName}</p>))
+            } */}
             {successMsg&&<p>HORRAY!! {successMsg}.</p>}
             <form onSubmit={handleSubmit} id="registerFormId">
-                <input type="text" onChange={(e) => setFirstName(e.target.value)} className="inputClass" placeholder="First Name"/>
-                <input type="text" onChange={(e) => setLastName(e.target.value)} className="inputClass" placeholder="Last Name"/>
-                <input type="text" onChange={(e) => setUsername(e.target.value)} className="inputClass" placeholder="Username"/>
+                <input type="text" onChange={(e) => setFirstName(e.target.value)} className="inputClass" value={firstName} placeholder="First Name"/>
+                <input type="text" onChange={(e) => setLastName(e.target.value)} className="inputClass" value={lastName} placeholder="Last Name"/>
+                <input type="text" onChange={(e) => setUsername(e.target.value)} className="inputClass" value={userName} placeholder="Username"/>
                 <input type="email" onChange={(e) => setEmail(e.target.value)} 
-                className="inputClass" placeholder="Email"/>
-                <input type="password" onChange={(e) => setPassword(e.target.value)} className="inputClass" placeholder="Password"/>
+                className="inputClass" value={email} placeholder="Email"/>
+                <input type="password" onChange={(e) => setPassword(e.target.value)} className="inputClass" value={passWord} placeholder="Password"/>
                 <button className="button btn-full">Register</button>
             </form>
             <Link to="/login">

@@ -23,8 +23,11 @@ const Login = () => {
         })
         .then(data => {
             setErrMsg(null);
-            localStorage.setItem('username', data.username);
+            localStorage.setItem('user', data.username);
             localStorage.setItem('token', data.token);
+            setUsername('');
+            setPassword('');
+            // return <Navigate to="/register" />
         })
         .catch((errresp) => {
             errresp.json().then(err => {
@@ -37,8 +40,8 @@ const Login = () => {
         <div className="form-section">
             {errMsg && <p>{errMsg}</p>}
             <form onSubmit={handleSubmit}>
-                <input type="text" onChange={(e) => setUsername(e.target.value)} className="inputClass" placeholder="Username"/>
-                <input type="password" onChange={(e) => setPassword(e.target.value)}  className="inputClass" placeholder="Password"/>
+                <input type="text" onChange={(e) => setUsername(e.target.value)} value={userName} className="inputClass" placeholder="Username"/>
+                <input type="password" onChange={(e) => setPassword(e.target.value)} value={passWord} className="inputClass" placeholder="Password"/>
                 <button disabled={!userName || !passWord} className="button btn-full" >Login</button>
             </form>
             <Link to="/register">
