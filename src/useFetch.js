@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import BASE_URL from "./constants";
 
 const useFetch = (url, header) => {
-    const apiUrl = "http://127.0.0.1:8000/"+url;
+    const apiUrl = BASE_URL+url;
     const [data, setData] = useState(null)
     const [err, setErr] = useState(true);
     const [errMsg, setErrMsg] = useState(null);

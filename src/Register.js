@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AUTH_URL } from "./constants";
+
+const REGISTER_URL_API = AUTH_URL + "register";
 
 const Register = () => {
     const [firstName, setFirstName] = useState('')
@@ -25,7 +28,7 @@ const Register = () => {
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(authData)
         }
-        fetch('http://localhost:8000/api/auth/register', header)
+        fetch(REGISTER_URL_API, header)
         .then(resp => {
             if(resp.status===201){
                 setSuccessMsg('Account Created');

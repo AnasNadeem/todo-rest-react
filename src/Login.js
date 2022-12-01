@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AUTH_URL } from "./constants";
+
 
 const Login = () => {
     const [userName, setUsername] = useState('')
     const [passWord, setPassword] = useState('')
     const [errMsg, setErrMsg] = useState(null)
+    const LOGIN_URL_API = AUTH_URL + "login"; 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +17,7 @@ const Login = () => {
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify(authData)
         }
-        fetch('http://localhost:8000/api/auth/login', header)
+        fetch(LOGIN_URL_API, header)
         .then(resp => {
             if(resp.ok){
                 return resp.json();
@@ -27,7 +30,6 @@ const Login = () => {
             localStorage.setItem('token', data.token);
             setUsername('');
             setPassword('');
-            // return <Navigate to="/register" />
         })
         .catch((errresp) => {
             errresp.json().then(err => {
