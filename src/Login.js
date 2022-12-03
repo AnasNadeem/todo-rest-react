@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AUTH_URL } from "./constants";
 
-
 const Login = () => {
     const [userName, setUsername] = useState('')
     const [passWord, setPassword] = useState('')
